@@ -15,7 +15,9 @@ class minecraft (
   }
   file {"${install_dir}/eula.txt":
     ensure => file,
-    content => 'eula=true'
+    content => epp('minecraft/minecraft.service',{
+    install_dir => $install_dir,
+    })
   }
   file {'/etc/systemd/system/minecraft.service':
     ensure => file,
